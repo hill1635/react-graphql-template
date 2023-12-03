@@ -1,0 +1,45 @@
+@import "./styles/variables";
+@import "./styles/mixins";
+
+body, html {
+ font-family: $font-primary;
+ background-color: $color-secondary;
+ padding: $padding-sm;
+}
+
+nav {
+  padding: $padding-sm;
+  margin: $margin-sm;
+  border-radius: $radius-5;
+}
+
+footer {
+  padding: $padding-sm;
+  margin: $margin-sm;
+}
+
+div {
+}
+
+section {
+  padding: $padding-sm;
+  margin: $margin-sm;
+  background-color: $color-primary;
+  border: none;
+  border-radius: $radius-5;
+}
+
+p {
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+}
+
+button {
+  border-radius: $radius-5;
+  padding: $padding-xs $padding-sm;
+  max-height: 50px;
+  border: none;
+}

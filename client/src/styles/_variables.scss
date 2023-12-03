@@ -1,0 +1,62 @@
+// * COLORS * //
+$color-primary: #ffffff;
+$color-secondary: #ffffff;
+$color-tertiary: #ffffff;
+$color-text: #000000;
+
+// * TYPOGRAPHY * //
+$font-primary: 'Quicksand', sans-serif;
+$font-secondary: 'Roboto', sans-serif;
+$font-tertiary: 'Roboto', sans-serif;
+
+// * SPACING * //
+$margin-xs: 0.5rem;
+$margin-sm: 1rem;
+$margin-md: 1.5rem;
+$margin-lg: 2rem;
+$margin-xl: 2.5rem;
+
+$padding-xs: 0.5rem;
+$padding-sm: 1rem;
+$padding-md: 1.5rem;
+$padding-lg: 2rem;
+$padding-xl: 2.5rem;
+
+$width-xs: 20rem;
+$width-sm: 36rem;
+$width-md: 48rem;
+$width-lg: 62rem;
+$width-xl: 75rem;
+
+$height-xs: 20rem;
+$height-sm: 36rem;
+$height-md: 48rem;
+$height-lg: 62rem;
+$height-xl: 75rem;
+
+// * BORDER * //
+$radius-1: .25rem;
+$radius-2: .5rem;
+$radius-3: .75rem;
+$radius-4: 1rem;
+$radius-5: 1.25rem;
+$radius-6: 1.5rem;
+$radius-7: 1.75rem;
+$radius-8: 2rem;
+
+
+$border-width: 1px;
+$border-color: #000000;
+
+// * BREAKPOINTS * //
+$breakpoint-xs: 20rem;
+$breakpoint-sm: 36rem;
+$breakpoint-md: 48rem;
+$breakpoint-lg: 62rem;
+$breakpoint-xl: 75rem;
+
+// * Z-INDEX * //
+$zindex-default: 1;
+$zindex-sticky: 100;
+$zindex-fixed: 1000;
+$zindex-modal: 10000;
