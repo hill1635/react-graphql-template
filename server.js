@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://127.0.0.1/mongodb-collection-name");
+    process.env.MONGODB_URI || "mongodb://127.0.0.1/react-graqhql-template");
 
 app.listen(PORT, function () {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);

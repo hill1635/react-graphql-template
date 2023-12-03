@@ -1,14 +1,12 @@
 import React from "react";
 import "./Header.scss";
-import Navigation from "../navigation/Navigation";
-import Search from "../search/Search";
+import Navigation from "../components/navigation/Navigation";
 
 function Header() {
     return (
         <header>
             <img alt="Logo" src="#"/>
-            <Search />
-            <Navigation />
+            {/* <Navigation /> */}
         </header>
     );
 }
