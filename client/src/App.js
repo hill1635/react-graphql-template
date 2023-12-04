@@ -17,13 +17,13 @@ function App() {
   const [ user, setUser ] = useState({});
   
 useEffect(() => {
-  API.checkSession()
-  .then((res) => {
-    if (res.data[0] !== undefined) {
-      setUser(res.data[0]);
-      setLoggedIn(true);
-    }
-  });
+  // API.checkSession()
+  // .then((res) => {
+  //   if (res.data[0] !== undefined) {
+  //     setUser(res.data[0]);
+  //     setLoggedIn(true);
+  //   }
+  // });
 }, []);
 
   return (
