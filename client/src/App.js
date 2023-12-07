@@ -26,21 +26,21 @@ useEffect(() => {
   // });
 }, []);
 
-  return (
-    <Router>
-      <div className="background">
-        <Header loggedIn={loggedIn} />
-        <Routes>
-          <Route exact path="/" element={<Home user={user} />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<SignUp />} />
-          <Route exact path="/account" element={<Account />} />
-          <Route exact path="/about" element={<About />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
-  );
+  // return (
+  //   <Router>
+  //     <div className="background">
+  //       <Header loggedIn={loggedIn} />
+  //       <Routes>
+  //         <Route exact path="/" element={<Home user={user} />} />
+  //         <Route exact path="/login" element={<Login />} />
+  //         <Route exact path="/signup" element={<SignUp />} />
+  //         <Route exact path="/account" element={<Account />} />
+  //         <Route exact path="/about" element={<About />} />
+  //       </Routes>
+  //       <Footer />
+  //     </div>
+  //   </Router>
+  // );
 }
 
 export default App;
