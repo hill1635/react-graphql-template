@@ -5,23 +5,13 @@ const MongoStore = require("connect-mongo")(session);
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLSchema, GraphQLInt, GraphQLString } = graphql;
 const { ApolloServer, gql } = require('apollo-server-express');
+const typeDefs = require("./graphql/typeDefs");
+const resolvers = require("./graphql/resolvers");
 
 const routes = require("./routes");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-
-const typeDefs = gql`
-    type Query {
-        hello: String
-    }
-`;
-
-const resolvers = {
-    Query: {
-        hello: () => 'Hello world!'
-    }
-};
 
 let server = null;
 async function startServer() {
@@ -58,5 +48,5 @@ mongoose.connect(
 
 app.listen(PORT, function () {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-    console.log(`gql path is http://localhost:3001/${server.graphqlPath}`);
+    console.log(`gql path is http://localhost:3001${server.graphqlPath}`);
 });
