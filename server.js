@@ -5,8 +5,7 @@ const MongoStore = require("connect-mongo")(session);
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLSchema, GraphQLInt, GraphQLString } = graphql;
 const { ApolloServer, gql } = require('apollo-server-express');
-const typeDefs = require("./graphql/typeDefs");
-const resolvers = require("./graphql/resolvers");
+const { typeDefs, resolvers } = require("./graphql/index.js");
 
 const routes = require("./routes");
 
