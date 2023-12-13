@@ -2,71 +2,37 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
-const { graphqlHTTP } = require("express-graphql");
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLSchema, GraphQLInt, GraphQLString } = graphql;
+const { ApolloServer, gql } = require('apollo-server-express');
 
 const routes = require("./routes");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-const UserType = new GraphQLObjectType({
-    name: "User",
-    fields: {
-        id: { type: GraphQLInt },
-        name: { type: GraphQLString },
-        email: { type: GraphQLString },
-        password: { type: GraphQLString },
-    },
-});
+const typeDefs = gql`
+    type Query {
+        hello: String
+    }
+`;
 
-const RootQuery = new GraphQLObjectType({
-    name: "RootQueryType",
-    fields: {
-        getAllUsers: {
-            type: UserType,
-            args: { id: { type: GraphQLInt } },
-            resolve(parent, args) {
-                return User.findAll({ where: args });
-            }
-        },
-    },
-});
+const resolvers = {
+    Query: {
+        hello: () => 'Hello world!'
+    }
+};
 
-const Mutation = new GraphQLObjectType({
-    name: "Mutation",
-    fields: {
-        createUser: {
-            type: UserType,
-            args: {
-                name: { type: GraphQLString },
-                email: { type: GraphQLString },
-                password: { type: GraphQLString },
-            },
-            resolve(parent, args) {
-                return User.create({
-                    name: args.name,
-                    email: args.email,
-                    password: args.password,
-                });
-            },
-        },
-    },
-});
-
-const schema = new GraphQLSchema({ query: RootQuery, mutation: Mutation });
-
+let server = null;
+async function startServer() {
+    server = new ApolloServer({ typeDefs, resolvers });
+    await server.start();
+    server.applyMiddleware({ app });
+}
+startServer();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(
-    "/graphql",
-    graphqlHTTP({
-      schema,
-      graphiql: true,
-    })
-  );
 
 const sess = {
     secret: "secret",
@@ -79,7 +45,7 @@ const sess = {
     }),
 };
 
-// app.use(session(sess));
+app.use(session(sess));
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
@@ -92,4 +58,5 @@ mongoose.connect(
 
 app.listen(PORT, function () {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+    console.log(`gql path is ${server.graphqlPath}`);
 });
