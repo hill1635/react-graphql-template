@@ -6,7 +6,7 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "start:dev": "concurrently \"node server.js\" \"npm run client\"",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/hill1635/react-weather-app#readme",
   "dependencies": {
+    "@apollo/client": "^3.8.8",
     "@graphql-tools/merge": "^9.0.1",
     "@prisma/client": "^5.6.0",
     "apollo-server-express": "^3.13.0",

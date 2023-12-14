@@ -19,7 +19,7 @@ function App() {
   const [ user, setUser ] = useState({});
 
   const ALL_USERS = gql`
-   query User {
+   query Query {
       all {
         name
         email
