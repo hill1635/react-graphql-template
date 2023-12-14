@@ -10,7 +10,7 @@ const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-let server = null;
+let server;
 async function startServer() {
     server = new ApolloServer({ typeDefs, resolvers });
     await server.start();

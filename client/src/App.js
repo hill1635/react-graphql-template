@@ -8,6 +8,8 @@ import Account from "./pages/account/Account";
 import About from "./pages/about/About";
 import Footer from "./footer/Footer";
 import API from "./utils/UserAPI";
+import gql from "graphql-tag";
+import { useQuery, useMutation } from "@apollo/client";
 
 import "./App.scss";
 import "./components/buttons/Buttons.scss";
@@ -15,8 +17,20 @@ import "./components/buttons/Buttons.scss";
 function App() {
   const [ loggedIn, setLoggedIn ] = useState(false);
   const [ user, setUser ] = useState({});
+
+  const ALL_USERS = gql`
+   query User {
+      all {
+        name
+        email
+      }
+    }
+  `;
   
+  const users = useQuery(ALL_USERS);
+  console.log(users);
 useEffect(() => {
+
   // API.checkSession()
   // .then((res) => {
   //   if (res.data[0] !== undefined) {
@@ -26,21 +40,21 @@ useEffect(() => {
   // });
 }, []);
 
-  // return (
-  //   <Router>
-  //     <div className="background">
-  //       <Header loggedIn={loggedIn} />
-  //       <Routes>
-  //         <Route exact path="/" element={<Home user={user} />} />
-  //         <Route exact path="/login" element={<Login />} />
-  //         <Route exact path="/signup" element={<SignUp />} />
-  //         <Route exact path="/account" element={<Account />} />
-  //         <Route exact path="/about" element={<About />} />
-  //       </Routes>
-  //       <Footer />
-  //     </div>
-  //   </Router>
-  // );
+  return (
+    <Router>
+      <div className="background">
+        <Header loggedIn={loggedIn} />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="/account" element={<Account />} />
+          <Route exact path="/about" element={<About />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
+  );
 }
 
 export default App;
