@@ -7,10 +7,6 @@ import SignUp from "./pages/signup/SignUp";
 import Account from "./pages/account/Account";
 import About from "./pages/about/About";
 import Footer from "./footer/Footer";
-import API from "./utils/UserAPI";
-import gql from "graphql-tag";
-import { useQuery, useMutation } from "@apollo/client";
-
 import "./App.scss";
 import "./components/buttons/Buttons.scss";
 
