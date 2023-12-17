@@ -15,7 +15,7 @@ const userTypeDefs = gql`
     }
 
     type Mutation {
-        createUser(email: String!, name: String!, password: String!): User
+        createUser(email: String!, password: String!): User
     }
 `;
 
@@ -41,11 +41,10 @@ const userResolvers = {
     // Write a resolver that creates a new user
     Mutation: {
         createUser: async (parent, args) => {
-            const { email, name, password } = args;
+            const { email, password } = args;
             const newUser = await prisma.user.create({
                 data: {
                     email,
-                    name,
                     password
                 }
             });

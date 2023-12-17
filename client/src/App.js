@@ -26,20 +26,6 @@ function App() {
       }
     }
   `;
-
-const CREATE_USER = gql`
-    mutation Mutation($email: String!, $name: String!, $password: String!) {
-      createUser(email: $email, name: $name, password: $password) {
-          name
-          email
-          password
-      }
-    }
-`;
-
-    const [createUser, { data }] = useMutation(CREATE_USER);
-    // createUser({ variables: { email: "test2@test.com", name: "test2", password: "test2" } });
-    
     const users = useQuery(ALL_USERS);
     
     

@@ -1,23 +1,30 @@
 import React from "react";
+import { useState } from "react";
 import "./SignUp.scss";
-import SignupBtn from "../../components/buttons/SignUp";
-import API from "../../utils/UserAPI";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/client";
 
 function SignUp() {
-  var createAccount = () => {
-    API.create({
-      email: document.querySelector("#userInput").value,
-      password: document.querySelector("#passwordInput").value
-    })
-    .then(() => window.location.href = "/login"); 
-  };
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
+
+  const CREATE_USER = gql`
+    mutation Mutation($email: String!, $password: String!) {
+      createUser(email: $email, password: $password) {
+          email
+          password
+      }
+    }
+  `;
+
+  const [createUser, { data }] = useMutation(CREATE_USER);
 
   return (
     <main>
       <h1>Sign Up</h1>
-      <input type="text" placeholder="Username" id="userInput"></input>
-      <input type="text" placeholder="Password" id="passwordInput"></input>
-      <SignupBtn submit={createAccount} />
+      <input type="text" placeholder="Email" id="userInput" onChange={(e) => setEmail(e.target.value)}></input>
+      <input type="text" placeholder="Password" id="passwordInput" onChange={(e) => setPassword(e.target.value)}></input>
+      <button onClick={() => createUser({ variables: { email: email, password: password } })}>Sign Up</button>
     </main>
   );
 }
