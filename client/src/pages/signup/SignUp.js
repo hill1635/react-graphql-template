@@ -9,8 +9,8 @@ function SignUp() {
   const [ password, setPassword ] = useState("");
 
   const CREATE_USER = gql`
-    mutation UserMutation($email: String!, $password: String!) {
-      create(email: $email, password: $password) {
+    mutation Mutation($email: String!, $password: String!) {
+      createUser(email: $email, password: $password) {
           email
           password
       }

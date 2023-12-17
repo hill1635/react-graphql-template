@@ -45,5 +45,5 @@ mongoose.connect(
 
 app.listen(PORT, function () {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-    console.log(`gql path is http://localhost:3001${server.graphqlPath}`);
+    // console.log(`gql path is http://localhost:3001${server.graphqlPath}`);
 });

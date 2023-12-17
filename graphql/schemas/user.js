@@ -9,18 +9,18 @@ const userTypeDefs = gql`
         password: String
     }
 
-    type UserQuery {
+    type Query {
         me: User
         all: [User]
     }
 
-    type UserMutation {
-        createUser(email: String!, password: String!): User
+    type Mutation {
+        create(email: String!, password: String!): User
     }
 `;
 
 const userResolvers = {
-    UserQuery: {
+    Query: {
         me: (parent, args) => {
             var me = prisma.user.findUnique({
                 where: {
@@ -39,8 +39,8 @@ const userResolvers = {
         }
     },
     // Write a resolver that creates a new user
-    UserMutation: {
-        create: async (parent, args) => {
+    Mutation: {
+        createUser: async (parent, args) => {
             const { email, password } = args;
             const newUser = await prisma.user.create({
                 data: {
