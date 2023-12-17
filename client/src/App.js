@@ -16,24 +16,6 @@ import "./components/buttons/Buttons.scss";
 
 function App() {
   const [ loggedIn, setLoggedIn ] = useState(false);
-  const [ user, setUser ] = useState({});
-
-  const ALL_USERS = gql`
-   query Query {
-      all {
-        name
-        email
-      }
-    }
-  `;
-    const users = useQuery(ALL_USERS);
-    
-    
-    useEffect(() => {
-      if (users.data) {
-        console.log(users.data);
-      }
-    }, [user]);
 
   return (
     <Router>
