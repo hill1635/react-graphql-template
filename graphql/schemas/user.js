@@ -1,5 +1,6 @@
 const { gql } = require('apollo-server-express');
 const { prisma } = require('../../prisma/db');
+const bcrypt = require('bcrypt');
 
 const userTypeDefs = gql`
     type User {
@@ -37,7 +38,8 @@ const userResolvers = {
     // Write a resolver that creates a new user
     Mutation: {
         createUser: async (parent, args) => {
-            const { email, password } = args;
+            const password = bcrypt.hashSync(args.password, 10);
+            const email = args.email;
             const newUser = await prisma.user.create({
                 data: {
                     email,
