@@ -12,7 +12,6 @@ const userTypeDefs = gql`
 
     type Query {
         findUser: User
-        all: [User]
     }
 
     type Mutation {
@@ -30,9 +29,27 @@ const userResolvers = {
             });
             return user;
         },
-        all: (parent, args) => {
-            var dbUsers = prisma.user.findMany({});
-            return dbUsers;
+        login: (parent, args, { req, res }) => {
+            var user = prisma.user.findUnique({
+                where: {
+                    email: args.email
+                },
+            }).then((user) => {
+                if (!user) {
+                    res.status(400);
+                    return res.status(400).send({ message: "Email is incorrect." });
+                  }
+                if (!bcrypt.compareSync(args.password)) {
+                    return res.status(400).send({ message: "Password is invalid." });
+                }
+                console.log("user:", user);
+                // req.session.save(() => {
+                //     req.session.loggedIn = true;
+                //     req.session.userId = dbModel[0]._id;
+                //     res.status(200).json({ user: req.body.email });
+                //   });
+            }).catch((e) => {res.status(500).json(e)});
+            // return user;
         }
     },
     // Write a resolver that creates a new user
