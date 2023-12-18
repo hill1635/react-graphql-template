@@ -43,8 +43,9 @@ const userResolvers = {
                     email,
                     password
                 }
+            }).catch((e) => {
+                console.log(e);
             });
-            console.log(newUser);
             return newUser;
         }
     }
