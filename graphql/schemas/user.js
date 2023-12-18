@@ -10,28 +10,24 @@ const userTypeDefs = gql`
     }
 
     type Query {
-        me: User
+        findUser: User
         all: [User]
     }
 
     type Mutation {
-        create(email: String!, password: String!): User
+        createUser(email: String!, password: String!): User
     }
 `;
 
 const userResolvers = {
     Query: {
-        me: (parent, args) => {
-            var me = prisma.user.findUnique({
+        findUser: (parent, args) => {
+            var user = prisma.user.findUnique({
                 where: {
-                    email: 'test@test.com'
+                    email: args.email
                 },
-                select: {
-                    name: true,
-                    email: true
-                }
             });
-            return me;
+            return user;
         },
         all: (parent, args) => {
             var dbUsers = prisma.user.findMany({});
